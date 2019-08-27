@@ -1,22 +1,25 @@
 *** Settings ***
 Library  ImapLibrary
 Library  SeleniumLibrary
+Library  ../Libraries/Email.py
 Resource  ../Resources/CommonWeb.robot
 
-#Test Setup  Begin Web Test
-#Test Teardown  End Web Test
+#Test Setup
+#Test Teardown
+
+#robot -d result tests/Draft.robot
 
 *** Variables ***
 ${BROWSER} =  chrome
 ${URL}  about:blank
 
+
 *** Test Cases ***
 Email Verification
-    Open Mailbox  host=imap.gmail.com  user=ntrongoanh01@gmail.com  password=oanhmai210790
-    wait for email
+    open mailbox  host=imap.gmail.com   user=ntrongoanh01@gmail.com   password=oanhmai210790
+    ImapLibrary.Wait For Email
     delete all emails
-    Close Mailbox
-
+    close mailbox
 
 
 
