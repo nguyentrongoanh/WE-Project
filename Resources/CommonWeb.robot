@@ -1,5 +1,7 @@
 *** Settings ***
 Library  SeleniumLibrary
+Library  ../Libraries/Email.py
+Library  ImapLibrary
 
 *** Variables ***
 
@@ -11,3 +13,10 @@ Begin Web Test
 
 End Web Test
     close all browsers
+
+Open Email Test
+    connect to email  ntrongoanh01@gmail.com  abc123
+
+
+Close Email Test
+    close email test

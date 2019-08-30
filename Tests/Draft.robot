@@ -1,8 +1,9 @@
 *** Settings ***
-Library  ImapLibrary
+# Library  ImapLibrary
 Library  SeleniumLibrary
 Library  ../Libraries/Email.py
 Resource  ../Resources/CommonWeb.robot
+Library  robot.libraries.DateTime
 
 #Test Setup
 #Test Teardown
@@ -12,16 +13,11 @@ Resource  ../Resources/CommonWeb.robot
 *** Variables ***
 ${BROWSER} =  chrome
 ${URL}  about:blank
-
+${EMAIL_SUBJECT}
 
 *** Test Cases ***
-Email Verification
-    open mailbox  host=imap.gmail.com   user=ntrongoanh01@gmail.com   password=oanhmai210790
-    ImapLibrary.Wait For Email
-    delete all emails
-    close mailbox
+Get current date
+        ${Date} =  get current date  increment=02:30:00
+        log  ${Date}
 
-
-
-*** Keywords ***
 
