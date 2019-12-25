@@ -5,19 +5,26 @@ Library  ../Libraries/Email.py
 Resource  ../Resources/CommonWeb.robot
 Library  robot.libraries.DateTime
 
-#Test Setup
-#Test Teardown
+Test Setup  Begin Web Test
+#Test Teardown  End Web Test
+
+# robot -d result tests/Export.robot
 
 #robot -d result tests/Draft.robot
 
 *** Variables ***
 ${BROWSER} =  chrome
-${URL}  about:blank
+${URL} =  https://patrickhouse.wewumbo.io/login
+${USER_EMAIL} =  ntrongoanh01@gmail.com
+${PASSWORD} =  abc123
 ${EMAIL_SUBJECT}
 
 *** Test Cases ***
-Get current date
-        ${Date} =  get current date  increment=02:30:00
-        log  ${Date}
+clear element text
+    go to   ${URL}
+    input text  //*[@name="email"]  ${USER_EMAIL}
+    input text  //*[@name="password"]  ${PASSWORD}
+    clear element text  //*[@name="email"]
+
 
 
